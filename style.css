@@ -75,6 +75,20 @@ figcaption {
 img {
 	width: 100%;
 }
+
+footer {
+	background-color: rgb(71, 64, 64);
+	padding: 0.1em;
+	clear: both;
+}
+footer p {
+	color: white;
+	text-align: center;
+	margin: 0.5em;
+}
+footer img {
+	width: 20px;
+}
 @media screen and (max-width: 900px) {
 	figure {
 		width: 90%;
