@@ -39,11 +39,6 @@ p {
   font-size: 1.5em;
   color: #27318b;
 }
-.news hr {
-  margin: 1em;
-  border: 1px dotted #27318b;
-  clear: both;
-}
 .news time {
   font-size: 90%;
   font-style: italic;

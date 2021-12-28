@@ -1,5 +1,6 @@
 <?php
-define('__APP__', TRUE);
+define('__APP__', TRUE);  
+// error_reporting(E_ERROR | E_PARSE);
   include ("dbconn.php");
   session_start();
   	# Variables MUST BE INTEGERS
@@ -11,7 +12,8 @@ define('__APP__', TRUE);
 	
 	if (!isset($menu)) { $menu = 1; }
 	
-	# Classes & Function
+	# Classes & Functions
+  include_once("functions.php");
 print '
 <!DOCTYPE html>
 <html>
@@ -102,7 +104,10 @@ print '
       # Register
       else if ($_GET['menu'] == 7) { include("registracija.php"); }
 
-      if ($_GET['menu'] != 6 && $_GET['menu'] != 7) {
+      # Admin
+      else if ($_GET['menu'] == 8) { include("admin.php"); }
+
+      if ($_GET['menu'] != 6 && $_GET['menu'] != 7 && $_GET['menu'] != 8) {
         print '
           </main>
           <footer>
