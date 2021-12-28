@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <title>AstroFun</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="author" content="Marko Cunj" />
+    <meta
+      name="viewport"
+      content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"
+    />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">AstroFun</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Gallery</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="jumbotron text-center">
+        <div class="hero-image"></div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <h1>Contact Form</h1>
+        <hr />
+        <div id="contact">
+          <iframe
+            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOcwCyZLWZUcRisL7KJYkRTo&key=AIzaSyBr493WZ0Pm9liYQNwd-ytvo2gVmO5Grgc"
+            width="100%"
+            height="400"
+            frameborder="0"
+            style="border:0"
+            allowfullscreen
+          ></iframe>
+          <hr />
+          <div class="row justify-content-center text-center">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <form
+                    action="http://work2.eburza.hr/pwa/responzive-page/send-contact.php"
+                    id="contact_form"
+                    name="contact_form"
+                    method="POST"
+                    class="form-group"
+                  >
+                    <label for="fname">First Name *</label>
+                    <input
+                      type="text"
+                      id="fname"
+                      name="firstname"
+                      placeholder="Your name.."
+                      class="form-control"
+                      required
+                    />
+
+                    <label for="lname">Last Name *</label>
+                    <input
+                      type="text"
+                      id="lname"
+                      name="lastname"
+                      placeholder="Your last name.."
+                      class="form-control"
+                      required
+                    />
+
+                    <label for="lname">Your E-mail *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="Your e-mail.."
+                      class="form-control"
+                      required
+                    />
+
+                    <label for="country">Country</label>
+                    <select class="form-control" id="country" name="country">
+                      <option value="">Please select</option>
+                      <option value="BE">Belgium</option>
+                      <option value="HR" selected>Croatia</option>
+                      <option value="LU">Luxembourg</option>
+                      <option value="HU">Hungary</option>
+                    </select>
+
+                    <label for="subject">Subject</label>
+                    <textarea
+                      id="subject"
+                      name="subject"
+                      placeholder="Write something.."
+                      style="height:200px"
+                      class="form-control"
+                    ></textarea>
+
+                    <input
+                      type="submit"
+                      class="btn btn-outline-success mt-2"
+                      value="Submit"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        Copyright &copy; 2021. Marko Cunj
+        <a href="https://github.com/markocunj/PHP-projekt"
+          ><img src="img/GitHub-Mark-Light-32px.png" title="Github" alt="Github"
+        /></a>
+      </p>
+    </footer>
+  </body>
+</html>

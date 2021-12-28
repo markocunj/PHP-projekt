@@ -34,11 +34,6 @@ p {
   line-height: 1.4em;
   letter-spacing: 1px;
 }
-hr {
-  margin: 1em;
-  border: 1px dotted #27318b;
-  clear: both;
-}
 .news h2 {
   margin: 0.5em 0.7em;
   font-size: 1.5em;
