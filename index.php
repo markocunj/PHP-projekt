@@ -1,3 +1,8 @@
+<?php
+
+  include ("dbconn.php");
+  error_reporting(E_ERROR | E_PARSE);
+print '
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,7 +40,7 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">AstroFun</a>
+        <a class="navbar-brand" href="index.php?menu=1">AstroFun</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -47,49 +52,37 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="news.html">News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="gallery.html">Gallery</a>
-            </li>
-          </ul>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">';
+        include("menu.php");
+        print '</div>
         </div>
-      </nav>
+      </nav>';
+      if ($_GET['menu'] < 2) 
+      {
+        print '
+        <div class="jumbotron text-center">
+        <div class="hero-image"></div>
+        </div>';
+      }
+      print '
     </header>
-    <main>
-      <div class="container">
-        <br />
-        <h1>About us</h1>
-        <hr />
-        <div class="embed-responsive embed-responsive-16by9">
-          <iframe
-            class="embed-responsive-item"
-            src="https://www.youtube.com/embed/HdPzOWlLrbE"
-            allowfullscreen
-          ></iframe>
-        </div>
-        <hr />
-        <p>
-          The widely accepted theory for the origin and evolution of the
-          universe is the Big Bang model, which states that the universe began
-          as an incredibly hot, dense point roughly 13.7 billion years ago. It's
-          our job and our hobby to explore origin of the universe as well as its
-          fundamental secrets.
-        </p>
-        <hr />
-      </div>
+    <main>';
+
+    	# Homepage
+      if (!isset($_GET['menu']) || $_GET['menu'] == 1) { include("home.php"); }
+      
+      # News
+      else if ($_GET['menu'] == 2) { include("news.php"); }
+      
+      # Contact
+      else if ($_GET['menu'] == 3) { include("contact.php"); }
+      
+      # About us
+      else if ($_GET['menu'] == 4) { include("about.php"); }
+
+      else if ($_GET['menu'] == 5) { include("gallery.php"); }
+
+  print '
     </main>
     <footer>
       <p>
@@ -100,4 +93,5 @@
       </p>
     </footer>
   </body>
-</html>
+</html>';
+?>
