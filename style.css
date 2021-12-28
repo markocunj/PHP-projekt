@@ -69,14 +69,14 @@ p {
   font-size: 90%;
   text-align: center;
 }
-figure {
+.figureNews {
   padding: 0.5em;
   margin: 0 1em 0.5em 1em;
   float: left;
   width: 35%;
   border: 1px solid black;
 }
-figcaption {
+.figcaptionNews {
   font-size: 90%;
 }
 img {
@@ -84,7 +84,7 @@ img {
 }
 
 @media screen and (max-width: 900px) {
-  figure {
+  .figureNews {
     width: 90%;
     margin: 1em;
   }
