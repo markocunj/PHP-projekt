@@ -1,7 +1,17 @@
 <?php
-
+define('__APP__', TRUE);
   include ("dbconn.php");
-  error_reporting(E_ERROR | E_PARSE);
+  session_start();
+  	# Variables MUST BE INTEGERS
+    if(isset($_GET['menu'])) { $menu   = (int)$_GET['menu']; }
+	if(isset($_GET['action'])) { $action   = (int)$_GET['action']; }
+	
+	# Variables MUST BE STRINGS A-Z
+    if(!isset($_POST['_action_']))  { $_POST['_action_'] = FALSE;  }
+	
+	if (!isset($menu)) { $menu = 1; }
+	
+	# Classes & Function
 print '
 <!DOCTYPE html>
 <html>
@@ -57,6 +67,10 @@ print '
         print '</div>
         </div>
       </nav>';
+      if (isset($_SESSION['message'])) {
+        print $_SESSION['message'];
+        unset($_SESSION['message']);
+      }
       if ($_GET['menu'] < 2) 
       {
         print '
@@ -67,7 +81,6 @@ print '
       print '
     </header>
     <main>';
-
     	# Homepage
       if (!isset($_GET['menu']) || $_GET['menu'] == 1) { include("home.php"); }
       
@@ -79,19 +92,28 @@ print '
       
       # About us
       else if ($_GET['menu'] == 4) { include("about.php"); }
-
+      
+      # Gallery
       else if ($_GET['menu'] == 5) { include("gallery.php"); }
 
-  print '
-    </main>
-    <footer>
-      <p>
-        Copyright &copy; 2021. Marko Cunj
-        <a href="https://github.com/markocunj/PHP-projekt"
-          ><img src="img/GitHub-Mark-Light-32px.png" title="Github" alt="Github"
-        /></a>
-      </p>
-    </footer>
-  </body>
-</html>';
+      # Login
+      else if ($_GET['menu'] == 6) { include("prijava.php"); }
+
+      # Register
+      else if ($_GET['menu'] == 7) { include("registracija.php"); }
+
+      if ($_GET['menu'] != 6 && $_GET['menu'] != 7) {
+        print '
+          </main>
+          <footer>
+            <p>
+              Copyright &copy; 2021. Marko Cunj
+              <a href="https://github.com/markocunj/PHP-projekt"
+                ><img src="img/GitHub-Mark-Light-32px.png" title="Github" alt="Github"
+              /></a>
+            </p>
+          </footer>
+        </body>
+      </html>';
+    }
 ?>
