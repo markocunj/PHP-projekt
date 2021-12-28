@@ -1,31 +1,115 @@
 .hero-image {
-	background-image: url("img/banner.jpg");
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: relative;
-	height: 500px;
+  background-image: url("img/banner.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 300px;
 }
 img {
-	width: 100%;
+  width: 100%;
 }
 
 footer {
-	background-color:rgb(52, 58, 64); 
-	padding: 0.1em;
-	clear: both;
+  background-color: rgb(52, 58, 64);
+  padding: 0.1em;
+  clear: both;
 }
 footer p {
-	color: white;
-	text-align: center;
-	margin: 0.5em;
+  color: white;
+  text-align: center;
+  margin: 0.5em;
 }
 footer img {
-	width: 20px;
+  width: 20px;
 }
 @media screen and (max-width: 900px) {
-	figure {
-		width: 90%;
-		margin: 1em;
-	}
+  figure {
+    width: 90%;
+    margin: 1em;
+  }
+}
+p {
+  margin: 1em;
+  line-height: 1.4em;
+  letter-spacing: 1px;
+}
+hr {
+  margin: 1em;
+  border: 1px dotted #27318b;
+  clear: both;
+}
+.news h2 {
+  margin: 0.5em 0.7em;
+  font-size: 1.5em;
+  color: #27318b;
+}
+.news hr {
+  margin: 1em;
+  border: 1px dotted #27318b;
+  clear: both;
+}
+.news time {
+  font-size: 90%;
+  font-style: italic;
+}
+.description {
+  font-weight: bold;
+  margin: 0.8em 1em 1.5em 1em;
+}
+.news img {
+  width: 12%;
+  float: left;
+  padding: 0.5em;
+  margin: 0 1em 0.5em 0.5em;
+}
+#news_gallery figure {
+  padding: 0.5em;
+  margin: 0 1em 0.5em 1em;
+  float: left;
+  width: 10%;
+  border: 1px solid black;
+}
+#news_gallery figcaption {
+  font-size: 90%;
+  text-align: center;
+}
+figure {
+  padding: 0.5em;
+  margin: 0 1em 0.5em 1em;
+  float: left;
+  width: 35%;
+  border: 1px solid black;
+}
+figcaption {
+  font-size: 90%;
+}
+img {
+  width: 100%;
+}
+
+@media screen and (max-width: 900px) {
+  figure {
+    width: 90%;
+    margin: 1em;
+  }
+  .news img {
+    width: 95%;
+    padding: 0.5em;
+    margin: 0 1em 0.5em 0.5em;
+  }
+  .news time {
+    margin: 0 0 0 1em;
+  }
+  #news_gallery figure {
+    padding: 0.5em;
+    margin: 0 1em 0.5em 1em;
+    float: left;
+    width: 90%;
+    border: 1px solid black;
+  }
+  #news_gallery figcaption {
+    font-size: 90%;
+    text-align: center;
+  }
 }
