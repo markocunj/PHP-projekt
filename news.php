@@ -35,7 +35,7 @@
 	}
 	else {
 		print '<div class="container"><h1>News</h1><hr>';
-		$query  = "SELECT * FROM news";
+		$query  = "SELECT * FROM news INNER JOIN pictures ON news.id = pictures.newsId";
     $query .= " WHERE archived=false";
 		$query .= " ORDER BY date_created DESC";
 		$result = @mysqli_query($MySQL, $query);

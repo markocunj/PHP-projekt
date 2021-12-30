@@ -5,7 +5,7 @@
 		$_SESSION['message'] = '';
 		# htmlspecialchars — Convert special characters to HTML entities
 		# http://php.net/manual/en/function.htmlspecialchars.php
-        if($_POST["archived"]){
+        if($_POST['archived']){
             $query  = "INSERT INTO news (title, description, subtitle, archived)";
             $query .= " VALUES ('" . htmlspecialchars($_POST['title'], ENT_QUOTES) . "', '" . htmlspecialchars($_POST['description'], ENT_QUOTES) . "', '" . htmlspecialchars($_POST['subtitle'], ENT_QUOTES) . "', " . $_POST['archived'] . ")";
         }
@@ -27,14 +27,12 @@
 			copy($_FILES['picture']['tmp_name'], "news/".$_picture);
 			
 			if ($ext == '.jpg' || $ext == '.png' || $ext == '.gif') { # test if format is picture
-				$_query  = "UPDATE news SET picture='" . $_picture . "'";
-				$_query .= " WHERE id=" . $ID . " LIMIT 1";
+				$_query  = "INSERT INTO pictures (newsId, picture) VALUES (" . $ID . ", '". $_picture . "')";
 				$_result = @mysqli_query($MySQL, $_query);
 				$_SESSION['message'] .= '<p>You successfully added picture.</p>';
 			}
         }
-		
-		
+			
 		$_SESSION['message'] .= "<p>You successfully added news!</p>";
 		
 		# Redirect
@@ -56,23 +54,22 @@
         $result = @mysqli_query($MySQL, $query);
 		
 		# picture
-        // if($_FILES['picture']['error'] == UPLOAD_ERR_OK && $_FILES['picture']['name'] != "") {
+        if($_FILES['picture']['error'] == UPLOAD_ERR_OK && $_FILES['picture']['name'] != "") {
                 
-		// 	# strtolower - Returns string with all alphabetic characters converted to lowercase. 
-		// 	# strrchr - Find the last occurrence of a character in a string
-		// 	$ext = strtolower(strrchr($_FILES['picture']['name'], "."));
+			# strtolower - Returns string with all alphabetic characters converted to lowercase. 
+			# strrchr - Find the last occurrence of a character in a string
+			$ext = strtolower(strrchr($_FILES['picture']['name'], "."));
             
-		// 	$_picture = (int)$_POST['edit'] . '-' . rand(1,100) . $ext;
-		// 	copy($_FILES['picture']['tmp_name'], "news/".$_picture);
+			$_picture = (int)$_POST['edit'] . '-' . rand(1,100) . $ext;
+			copy($_FILES['picture']['tmp_name'], "news/".$_picture);
 			
 			
-		// 	if ($ext == '.jpg' || $ext == '.png' || $ext == '.gif') { # test if format is picture
-		// 		$_query  = "UPDATE news SET picture='" . $_picture . "'";
-		// 		$_query .= " WHERE id=" . (int)$_POST['edit'] . " LIMIT 1";
-		// 		$_result = @mysqli_query($MySQL, $_query);
-		// 		$_SESSION['message'] .= '<p>You successfully added picture.</p>';
-		// 	}
-        // }
+			if ($ext == '.jpg' || $ext == '.png' || $ext == '.gif') { # test if format is picture
+				$_query  = "INSERT INTO pictures (newsId, picture) VALUES (" . (int)$_POST['edit'] . ", '". $_picture . "')";
+				$_result = @mysqli_query($MySQL, $_query);
+				$_SESSION['message'] .= '<p>You successfully added picture.</p>';
+			}
+        }
 		
 		$_SESSION['message'] = '<p>You successfully changed news!</p>';
 		
@@ -140,7 +137,7 @@
 			<label for="description">Description *</label>
 			<textarea rows="10" cols="30" class="form-control" id="description" name="description" placeholder="News description.." required></textarea>
 				
-			<label class="form-label" for="picture">Banner picture * <small>(only one)</small></label><br/>
+			<label class="form-label" for="picture">Banner picture * <small>(only one for banner)</small></label><br/>
 			<input type="file" id="picture" name="picture" required>
 
             <input type="checkbox" name="archived" value="true">
@@ -201,7 +198,7 @@
 				<thead class="thead-dark">
 					<tr>
 						<th>Title</th>
-						<th>Description</th>
+						<th style="width: 35%">Description</th>
 						<th>Date</th>
 						<th>Actions</th>
 					</tr>
@@ -224,8 +221,11 @@
 						</td>
 						<td>' . $row['date_created'] . '</td>
                         <td><a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;id=' .$row['id']. '">Info</a>
-						<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;edit=' .$row['id']. '">Uredi</a>
-						<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;delete=' .$row['id']. '">Obriši</a></td>
+						<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;edit=' .$row['id']. '">Uredi</a>';
+						if($_SESSION["user"]["role"] == 3){
+						print '<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;delete=' .$row['id']. '">Obriši</a></td>';
+						}
+						print '
 					</tr>';
 				}
 			print '

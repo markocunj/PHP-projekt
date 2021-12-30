@@ -2,7 +2,7 @@
 	
 	# Update user profile
 	if (isset($_POST['edit']) && $_POST['_action_'] == 'TRUE') {
-		$query  = "UPDATE korisnik SET Ime='" . $_POST['firstname'] . "', Prezime='" . $_POST['lastname'] . "', Username='" . $_POST['username'] . "', Drzava='" . $_POST['country'] . "' WHERE Email='" . $_POST['edit'] . "'";
+		$query  = "UPDATE korisnik SET Ime='" . $_POST['firstname'] . "', Prezime='" . $_POST['lastname'] . "', Username='" . $_POST['username'] . "', Drzava='" . $_POST['country'] . "', Rola='" . $_POST['rola'] . "' WHERE Email='" . $_POST['edit'] . "'";
         $query .= " LIMIT 1";
         $result = @mysqli_query($MySQL, $query);
 		# Close MySQL connection
@@ -85,6 +85,13 @@
 				}
 			print '
 			</select>
+
+			<label for="country">Country</label>
+			<select class="form-control" name="rola" id="rola">
+				<option value="0"'; if($row["Rola"] == 0) { print ' selected';} print '>Korisnik</option>
+				<option value="2"'; if($row["Rola"] == 2) { print ' selected';} print '>Editor</option>
+				<option value="3"'; if($row["Rola"] == 3) { print ' selected';} print '>Administrator</option>
+			</select>
 			<hr>
 			
 			<input class="btn btn-outline-success" type="submit" value="Submit">
@@ -103,6 +110,7 @@
 						<th>Last name</th>
 						<th>E mail</th>
 						<th>Država</th>
+						<th>Rola</th>
                         <th>Action</th>
 					</tr>
 				</thead>
@@ -122,7 +130,13 @@
 							$_row = @mysqli_fetch_array($_result, MYSQLI_ASSOC);
 							print $_row['country_name'] . '
 						</td>
-                        <td><a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;id=' .$row['Email']. '">Info</a>
+						<td>
+						';
+							if($row["Rola"] == 0) { print 'Korisnik'; }
+							else if($row["Rola"] == 2) { print 'Editor'; }
+							else if($row["Rola"] == 3) { print 'Administrator'; }
+                        print '</td>
+						<td><a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;id=' .$row['Email']. '">Info</a>
                         <a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;edit=' .$row['Email']. '">Uredi</a>
                         <a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;delete=' .$row['Email']. '">Obriši</a></td>
 					</tr>';

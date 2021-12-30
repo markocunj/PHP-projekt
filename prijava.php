@@ -32,6 +32,7 @@
 			$_SESSION['user']['id'] = $row['id'];
 			$_SESSION['user']['firstname'] = $row['Ime'];
 			$_SESSION['user']['lastname'] = $row['Prezime'];
+			$_SESSION['user']['role'] = $row["Rola"];
 			$_SESSION['message'] = '<p>Dobrodošli, ' . $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] . '</p>';
 			# Redirect to admin website
 			header("Location: index.php?menu=1");
