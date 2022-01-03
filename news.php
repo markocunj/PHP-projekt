@@ -1,8 +1,8 @@
 <?php
 	
 	if (isset($action) && $action != '') {
-		$query  = "SELECT * FROM news";
-		$query .= " WHERE id=" . $_GET['action'];
+		$query  = "SELECT * FROM news INNER JOIN pictures ON news.id = pictures.newsId";
+		$query .= " WHERE news.id=" . $_GET['action'];
 		$result = @mysqli_query($MySQL, $query);
 		$row = @mysqli_fetch_array($result);
 			print '
@@ -17,24 +17,13 @@
         <hr />
 				<img src="news/' . $row['picture'] . '" alt="' . $row['title'] . '" title="' . $row['title'] . '">
         <hr />
-        <div id="news_gallery">
-          <figure id="1">
-            <img src="img/news-1.2.jpg" alt="title picture 1" title="title picture 1">
-            <figcaption class="f">Picture of universe.<figcaption>
-          </figure>
-          <figure id="2">
-            <img src="img/news-1.3.jpg" alt="title picture 2" title="title picture 2">
-            <figcaption>Picture of galaxy.<figcaption>
-          </figure>
-        </div>
-        <br>
         <p>'. $row["description"] . ' </p>
         <hr>
         <a href="index.php?menu=2">Back to News</a>
 		  <div>';
 	}
 	else {
-		print '<div class="container"><h1>News</h1><hr>';
+		print '<br><div class="container"><h1>News</h1><hr>';
 		$query  = "SELECT * FROM news INNER JOIN pictures ON news.id = pictures.newsId";
     $query .= " WHERE archived=false";
 		$query .= " ORDER BY date_created DESC";
@@ -56,6 +45,6 @@
 				<hr>
 			</div>';
 		}
-    print '</div>';
+    print '</div><br>';
 	}
 ?>

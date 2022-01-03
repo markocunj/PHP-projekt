@@ -82,19 +82,25 @@
 	if (isset($_GET['delete']) && $_GET['delete'] != '') {
 		
 		# Delete picture
-        $query  = "SELECT picture FROM news";
-        $query .= " WHERE id=".(int)$_GET['delete']." LIMIT 1";
+        $query  = "SELECT picture FROM pictures INNER JOIN news ON pictures.newsId = news.id";
+        $query .= " WHERE news.id=".(int)$_GET['delete']." LIMIT 1";
         $result = @mysqli_query($MySQL, $query);
         $row = @mysqli_fetch_array($result);
         @unlink("news/".$row['picture']); 
 		
+		# Delete picture from base
+		$query  = "DELETE FROM pictures";
+		$query .= " WHERE newsId=".(int)$_GET['delete'];
+		$query .= " LIMIT 1";
+		$result = @mysqli_query($MySQL, $query);
+
 		# Delete news
 		$query  = "DELETE FROM news";
 		$query .= " WHERE id=".(int)$_GET['delete'];
 		$query .= " LIMIT 1";
 		$result = @mysqli_query($MySQL, $query);
 
-		$_SESSION['message'] = '<p>You successfully deleted news!</p>';
+		$_SESSION['message'] = '<p>You successfully deleted news.</p>';
 		
 		# Redirect
 		header("Location: index.php?menu=8&action=2");
@@ -104,11 +110,12 @@
 	
 	#Show news info
 	if (isset($_GET['id']) && $_GET['id'] != '') {
-		$query  = "SELECT * FROM news";
-		$query .= " WHERE id=".$_GET['id'];
+		$query  = "SELECT * FROM news INNER JOIN pictures ON news.id = pictures.newsId";
+		$query .= " WHERE news.id=".$_GET['id'];
 		$query .= " ORDER BY date_created DESC";
 		$result = @mysqli_query($MySQL, $query);
 		$row = @mysqli_fetch_array($result);
+
 		print '
 		<h2>News overview</h2>
 		<div class="news">
@@ -221,7 +228,7 @@
 						</td>
 						<td>' . $row['date_created'] . '</td>
                         <td><a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;id=' .$row['id']. '">Info</a>
-						<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;edit=' .$row['id']. '">Uredi</a>';
+						<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;edit=' .$row['id']. '">Uredi </a>';
 						if($_SESSION["user"]["role"] == 3){
 						print '<a href="index.php?menu='.$menu.'&amp;action='.$action.'&amp;delete=' .$row['id']. '">Obriši</a></td>';
 						}
