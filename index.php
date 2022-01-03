@@ -1,6 +1,6 @@
 <?php
 define('__APP__', TRUE);  
-// error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
   include ("dbconn.php");
   session_start();
   	# Variables MUST BE INTEGERS
